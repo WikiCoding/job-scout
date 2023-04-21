@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer");
 const db = require('./db/database');
 const path = require('path');
 const os = require('os');
+const chrome = require('chrome-aws-lambda');
 
 const chromiumPath = chrome.executablePath;
 
