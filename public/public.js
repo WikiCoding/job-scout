@@ -1,6 +1,6 @@
 const findJobsBtn = document.querySelector('#job-updates-btn');
 const allLoadedJobs = document.querySelector('#all-jobs-btn');
-const url = 'https://job-scout.onrender.com/'
+const url = 'https://job-scout.onrender.com'
 //const url = 'http://localhost:5000';
 const allJobs = document.querySelector('.all_jobs');
 
