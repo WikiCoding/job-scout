@@ -4,7 +4,7 @@ const path = require('path');
 const os = require('os');
 const chrome = require('chrome-aws-lambda');
 
-const chromiumPath = chrome.executablePath;
+const chromiumPath = await getChromiumPath();
 
 class Company {
   constructor(name) {
@@ -28,7 +28,7 @@ class Company {
     } else {
       browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        executablePath: chromiumPath,
+        executablePath: chromiumPath.toString(),
       });
     }
     //const browser = await puppeteer.launch()
