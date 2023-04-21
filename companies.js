@@ -28,7 +28,7 @@ class Company {
     } else {
       browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        executablePath: chromiumPath.toString(),
+        executablePath: chromiumPath,
       });
     }
     //const browser = await puppeteer.launch()
