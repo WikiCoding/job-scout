@@ -1,6 +1,9 @@
 const puppeteer = require("puppeteer");
 const db = require('./db/database');
-require("dotenv").config();
+const path = require('path');
+const os = require('os');
+
+const chromiumPath = chrome.executablePath;
 
 class Company {
   constructor(name) {
@@ -13,18 +16,21 @@ class Company {
 
 
   async readUrl(url, selector) {
-    const browser = await puppeteer.launch({
-      args: [
-        "--disable-setuid-sandbox",
-        "--no-sandbox",
-        "--single-process",
-        "--no-zygote",
-      ],
-      executablePath:
-        process.env.NODE_ENV === "production"
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : puppeteer.executablePath(),
-    })
+    let browser;
+
+    if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      browser = await puppeteer.launch({
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      });
+    } else {
+      browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        executablePath: chromiumPath,
+      });
+    }
+    //const browser = await puppeteer.launch()
     const page = await browser.newPage();
 
     this.url = url;
