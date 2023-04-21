@@ -15,7 +15,7 @@ class Company {
 
 
   async readUrl(url, selector) {
-    const chromiumPath = await getChromiumPath();
+    const chromiumPath = await chrome.executablePath;
     
     let browser;
 
