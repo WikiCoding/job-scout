@@ -4,8 +4,6 @@ const path = require('path');
 const os = require('os');
 const chrome = require('chrome-aws-lambda');
 
-const chromiumPath = await getChromiumPath();
-
 class Company {
   constructor(name) {
     this.name = name;
@@ -17,6 +15,8 @@ class Company {
 
 
   async readUrl(url, selector) {
+    const chromiumPath = await getChromiumPath();
+    
     let browser;
 
     if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
