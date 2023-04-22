@@ -15,6 +15,9 @@ class Company {
 
 
   async readUrl(url, selector) {
+    process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
+    process.env.CHROMIUM_SANDBOX = 'false';
+    
     const chromiumPath = await chrome.executablePath;
     
     let browser;
